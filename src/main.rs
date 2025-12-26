@@ -27,6 +27,9 @@ fn main() {
     println!("Highest value: {}", highest);
     println!("Average value: {}", average);
 
+    let sorted_numbers = sort_numbers(&numbers);
+    println!("Sorted values: {:?}", sorted_numbers);
+
 }
 
 fn find_min(arr: &[i32]) -> i32 {
@@ -55,4 +58,25 @@ fn calculate_average(arr: &[i32]) -> f64 {
         sum += value;
     }
     return sum as f64 / arr.len() as f64;
+}
+
+fn sort_numbers(arr: &[i32]) -> Vec<i32> {
+    let mut sorted = arr.to_vec();
+
+    let mut swapped = true;
+
+    while swapped {
+        swapped = false;
+
+        for i in 0..sorted.len() - 1 {
+            if sorted[i] > sorted[i + 1] {
+                let tmp = sorted[i];
+                sorted[i] = sorted[i + 1];
+                sorted[i + 1] = tmp;
+                swapped = true;
+            }
+        }
+    }
+
+    sorted
 }
